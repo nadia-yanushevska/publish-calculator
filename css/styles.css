@@ -1,0 +1,101 @@
+.heading {
+    text-align: center;
+}
+
+.form-sec {
+    background-color: linen;
+
+    padding-top: 30px;
+}
+
+.calculator-form {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 120px;
+    row-gap: 48px;
+}
+.form-container {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.form-fieldset {
+    width: fit-content;
+    max-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-color: wheat;
+}
+.form-lables {
+}
+
+.form-fieldset .form-lables {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.form-selection {
+}
+.form-options {
+}
+.form-inputs {
+}
+.form-btn {
+    width: fit-content;
+    margin: auto;
+    margin-top: 32px;
+}
+
+.results-sec {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+.data-container {
+    max-width: 400px;
+}
+
+.data-list {
+    list-style-type: none;
+    padding-left: 0px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 44px;
+    row-gap: 24px;
+}
+
+.data-li {
+    text-transform: capitalize;
+}
+
+.hidden-elements {
+    display: none;
+}
