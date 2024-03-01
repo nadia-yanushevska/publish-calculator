@@ -20,19 +20,17 @@
                             <option class="form-options" value="standart-4">84 × 108 / 32</option>
                         </select>
                         <label class="form-lables" for="pages">Enter number of pages:</label>
-                        <input class="form-inputs" name="pages" id="pages" type="number" min="1" />
+                        <input class="form-inputs" name="pages" id="pages" type="number" min="1" step=".01" />
                         <label class="form-lables" for="fda">Enter <abbr title="">FDA</abbr>:</label>
-                        <input class="form-inputs" name="fda" id="fda" type="number" min="0" />
+                        <input class="form-inputs" name="fda" id="fda" type="number" min="0" step=".01" />
                         <label class="form-lables" for="yda">Enter <abbr title="">YDA</abbr>:</label>
-                        <input class="form-inputs" name="yda" id="yda" type="number" min="0" />
+                        <input class="form-inputs" name="yda" id="yda" type="number" min="0" step=".01" />
                     </div>
                     <div class="form-container">
                         <label class="form-lables" for="text-symbols">Enter number of text symbols:</label>
-                        <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" />
+                        <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" step=".01" />
                         <label class="form-lables" for="illustrations">Enter number of illustrations:</label>
-                        <input class="form-inputs" name="illustrations" id="illustrations" type="number" min="0" />
-                        <label class="form-lables" for="view-scope">Enter view-scope:</label>
-                        <input class="form-inputs" name="view-scope" id="view-scope" type="number" min="0" />
+                        <input class="form-inputs" name="illustrations" id="illustrations" type="number" min="0" step=".01" />
                         <label class="form-lables" for="special"
                             >Special
                             <input class="form-inputs" name="special" type="checkbox" id="special" min="0" data-calc-checkbox />
@@ -40,7 +38,7 @@
                     </div>
                     <fieldset class="form-fieldset hidden-elements" data-calc-fieldset>
                         <label class="form-lables" for="a">a = <input class="form-inputs" name="a" id="a" type="number" disabled value="16" /></label>
-                        <label class="form-lables" for="b">b = <input class="form-inputs" name="b" id="b" type="number" min="0" /></label>
+                        <label class="form-lables" for="b">b = <input class="form-inputs" name="b" id="b" type="number" min="0" step=".01" /></label>
                         <label class="form-lables" for="quantity">Quantity = <input class="form-inputs" name="quantity" id="quantity" type="number" min="0" /></label>
                     </fieldset>
                 </div>
@@ -60,7 +58,7 @@
                     </ul>
                 </div>
                 <div class="data-container">
-                    <h3 class="heading">Invoice:</h3>
+                    <h3 class="heading">View scope:</h3>
                     <p class="heading" data-result></p>
                 </div>
             </div>

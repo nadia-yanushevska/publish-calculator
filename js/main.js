@@ -27,7 +27,6 @@ function getData(elems) {
         yda: { value: yda },
         'text-symbols': { value: symbols },
         illustrations: { value: illustrations },
-        'view-scope': { value: scope },
         special: { checked: special },
     } = elems;
 
@@ -40,13 +39,18 @@ function getData(elems) {
             quantity: { value: quantity = 0 },
         } = elems;
 
-        return { format, pages, fda, yda, symbols, illustrations, scope, a, b, quantity };
+        return { format, pages, fda, yda, symbols, illustrations, a, b, quantity };
     }
-    return { format, pages, fda, yda, symbols, illustrations, scope };
+    return { format, pages, fda, yda, symbols, illustrations };
 }
 
-function calculateInvoice(data) {
-    return 'xxx';
+function calculateInvoice({ symbols, illustrations }) {
+    // ROUNDUP(textQuntity/40+illustrations/3000,2)
+    return roundUp(symbols / 40 + illustrations / 3000);
+}
+
+function roundUp(num) {
+    return Math.ceil(num * 100) / 100;
 }
 
 function getDataMarkup(obj) {
@@ -55,14 +59,14 @@ function getDataMarkup(obj) {
 }
 
 function dataTemplate(propArr) {
-    return `<li class="data-li">${propArr[0]}: ${propArr[1]}</li>`;
+    return `<li class="data-li">${propArr[0]}: <strong>${propArr[1]}</strong></li>`;
 }
 
 // onClick responses:
 function onFormSubmit(e) {
     e.preventDefault();
 
-    const formData = getData(calcForm.elements);
+    let formData = getData(calcForm.elements);
     const result = calculateInvoice(formData);
 
     resultInput.innerHTML = getDataMarkup(formData);
@@ -71,6 +75,8 @@ function onFormSubmit(e) {
     resultsElem.classList.remove('hidden-elements');
 
     e.target.reset();
+    calcFieldSet.classList.add('hidden-elements');
+    formData = {};
 }
 
 function onCheckboxChange(e) {
