@@ -10,39 +10,37 @@
         <section class="form-sec">
             <h2 class="heading">Data Form</h2>
             <form class="calculator-form" action="/action_page.php" data-calc-form>
-                <div class="flex-container">
-                    <div class="form-container">
-                        <label class="form-lables" for="format">Choose format:</label>
-                        <select class="form-selection" id="format" name="format">
-                            <option class="form-options" value="standart-1">60 × 84 / 16</option>
-                            <option class="form-options" value="standart-2">60 × 84 / 8</option>
-                            <option class="form-options" value="standart-3">70 × 100 / 16</option>
-                            <option class="form-options" value="standart-4">84 × 108 / 32</option>
-                        </select>
-                        <label class="form-lables" for="pages">Enter number of pages:</label>
-                        <input class="form-inputs" name="pages" id="pages" type="number" min="1" step=".01" />
-                        <label class="form-lables" for="fda">Enter <abbr title="">FDA</abbr>:</label>
-                        <input class="form-inputs" name="fda" id="fda" type="number" min="0" step=".01" />
-                        <label class="form-lables" for="yda">Enter <abbr title="">YDA</abbr>:</label>
-                        <input class="form-inputs" name="yda" id="yda" type="number" min="0" step=".01" />
-                    </div>
-                    <div class="form-container">
-                        <label class="form-lables" for="text-symbols">Enter number of text symbols:</label>
-                        <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" step=".01" />
-                        <label class="form-lables" for="illustrations">Enter number of illustrations:</label>
-                        <input class="form-inputs" name="illustrations" id="illustrations" type="number" min="0" step=".01" />
-                        <label class="form-lables" for="special"
-                            >Special
-                            <input class="form-inputs" name="special" type="checkbox" id="special" min="0" data-calc-checkbox />
+                <div class="flex-container" data-field-container>
+                    <fieldset class="column-container">
+                        <label class="form-lables" for="format"
+                            >Choose format:
+                            <select class="form-selection" id="format" name="format" data-format-input>
+                                <option class="form-options" value="st-1">60 × 84 / 16</option>
+                                <option class="form-options" value="st-2">60 × 84 / 8</option>
+                                <option class="form-options" value="st-3">70 × 100 / 16</option>
+                                <option class="form-options" value="st-4">84 × 108 / 32</option>
+                            </select>
                         </label>
-                    </div>
-                    <fieldset class="form-fieldset hidden-elements" data-calc-fieldset>
-                        <label class="form-lables" for="a">a = <input class="form-inputs" name="a" id="a" type="number" disabled value="16" /></label>
-                        <label class="form-lables" for="b">b = <input class="form-inputs" name="b" id="b" type="number" min="0" step=".01" /></label>
-                        <label class="form-lables" for="quantity">Quantity = <input class="form-inputs" name="quantity" id="quantity" type="number" min="0" /></label>
+                        <label class="form-lables" for="pages"
+                            >Enter page count:
+                            <input class="form-inputs" name="pages" id="pages" type="number" min="1" />
+                        </label>
+                        <label class="form-lables" for="text-symbols"
+                            >Enter text-symbol count (tys.zn.):
+                            <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" step=".01" />
+                        </label>
+                    </fieldset>
+                    <fieldset class="column-container" data-js-added>
+                        <label class="form-lables" for="a">a <input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input /></label>
+                        <label class="form-lables" for="b">b <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" /></label>
+                        <label class="form-lables" for="quantity">Quantity <input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" /></label>
                     </fieldset>
                 </div>
-                <button class="form-btn" type="submit">Calculate</button>
+                <label class="form-checkbox hidden-elements" for="a4-a5">A4 change to A5? <input type="checkbox" name="a4-change-a5" id="" data-checkbox /> </label>
+                <div class="controls">
+                    <button class="add-btn" type="button" data-add-field>Add illustration</button>
+                    <button class="form-btn" type="submit">Calculate</button>
+                </div>
             </form>
         </section>
 
@@ -52,14 +50,18 @@
                 <div class="data-container">
                     <h3 class="heading">Your data:</h3>
                     <ul class="data-list" data-input>
-                        <div class="column"></div>
-                        <div class="column"></div>
-                        <div class="column"></div>
+                        <li class="data-li">Pages, ipsum.</li>
+                        <li class="data-li">Autem, unde!</li>
+                        <li class="data-li">illustrations, hil!</li>
+                        <li class="data-li">Aspernatur, volupt!</li>
                     </ul>
                 </div>
                 <div class="data-container">
-                    <h3 class="heading">View scope:</h3>
-                    <p class="heading" data-result></p>
+                    <h3 class="heading">Results:</h3>
+                    <ul class="data-list" data-output>
+                        <li class="data-li">Lorem, ipsum.</li>
+                        <li class="data-li">Hic, ipsum.</li>
+                    </ul>
                 </div>
             </div>
         </section>

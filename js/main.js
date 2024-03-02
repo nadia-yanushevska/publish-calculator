@@ -1,56 +1,52 @@
-const formats = {
-    'standart-1': '60 × 84 / 16',
-    'standart-2': '60 × 84 / 8',
-    'standart-3': '70 × 100 / 16',
-    'standart-4': '84 × 108 / 32',
-};
+import { getFormatData, getFormatValue, calculateOV, calculateYDA } from './calculator.js';
+
+const iterator = 1;
 
 const body = document.body;
 const calcForm = body.querySelector('[data-calc-form]');
-
-const calcCheckbox = calcForm.querySelector('[data-calc-checkbox]');
-const calcFieldSet = calcForm.querySelector('[data-calc-fieldset]');
-if (calcCheckbox.checked) calcFieldSet.classList.remove('hidden-elements');
+const formatSelection = calcForm.querySelector('[data-format-input]');
+const fieldContainer = calcForm.querySelector('[data-field-container]');
+const formCheckbox = calcForm.querySelector('[data-checkbox]');
+const addBtn = calcForm.querySelector('[data-add-field]');
 
 const resultsElem = body.querySelector('[data-results]');
 const resultInput = body.querySelector('[data-input]');
-const resultOutput = body.querySelector('[data-result]');
+const resultOutput = body.querySelector('[data-output]');
 
-calcCheckbox.addEventListener('change', onCheckboxChange);
 calcForm.addEventListener('submit', onFormSubmit);
+formatSelection.addEventListener('change', onFormatSelect);
+addBtn.addEventListener('click', onAddClick);
 
-function getData(elems) {
+function getData(elems, fieldArray) {
     const {
         format: { value: standart },
-        pages: { value: pages },
-        fda: { value: fda },
-        yda: { value: yda },
-        'text-symbols': { value: symbols },
-        illustrations: { value: illustrations },
-        special: { checked: special },
+        pages: { value: pagesStr },
+        'text-symbols': { value: symbolsStr },
     } = elems;
 
-    const format = formats[standart];
+    const format = getFormatValue(standart);
+    const pages = +pagesStr;
+    const symbols = +symbolsStr;
 
-    if (special) {
-        const {
-            a: { value: a = 0 },
-            b: { value: b = 0 },
-            quantity: { value: quantity = 0 },
-        } = elems;
+    const a = getFormatData(format, 'a');
+    const b = [];
+    const quantity = [];
 
-        return { format, pages, fda, yda, symbols, illustrations, a, b, quantity };
-    }
-    return { format, pages, fda, yda, symbols, illustrations };
+    fieldArray.forEach(elem => {
+        b.push(+elem.elements.b.value);
+        quantity.push(+elem.elements.quantity.value);
+    });
+
+    let A4toA5 = formCheckbox.checked;
+
+    return { format, pages, symbols, a, b, quantity, A4toA5 };
 }
 
-function calculateInvoice({ symbols, illustrations }) {
-    // ROUNDUP(textQuntity/40+illustrations/3000,2)
-    return roundUp(symbols / 40 + illustrations / 3000);
-}
-
-function roundUp(num) {
-    return Math.ceil(num * 100) / 100;
+function getComputedData(input) {
+    const computed = {};
+    computed.ov = calculateOV(input);
+    computed.yda = calculateYDA(input);
+    return computed;
 }
 
 function getDataMarkup(obj) {
@@ -66,19 +62,44 @@ function dataTemplate(propArr) {
 function onFormSubmit(e) {
     e.preventDefault();
 
-    let formData = getData(calcForm.elements);
-    const result = calculateInvoice(formData);
+    let formData = getData(calcForm.elements, [...calcForm.querySelectorAll('[data-js-added]')]);
+    let resultData = getComputedData(formData);
 
     resultInput.innerHTML = getDataMarkup(formData);
-    resultOutput.innerHTML = result;
+    resultOutput.innerHTML = getDataMarkup(resultData);
 
     resultsElem.classList.remove('hidden-elements');
 
+    [...fieldContainer.querySelectorAll('[data-js-added]')].forEach(elem => fieldContainer.removeChild(elem));
+    onAddClick();
+
     e.target.reset();
-    calcFieldSet.classList.add('hidden-elements');
     formData = {};
+    resultData = {};
+    onFormatSelect();
 }
 
-function onCheckboxChange(e) {
-    calcFieldSet.classList.toggle('hidden-elements');
+function onFormatSelect() {
+    const formatName = formatSelection.selectedOptions[0].value;
+    const formatVal = getFormatValue(formatName);
+    const formatA = getFormatData(formatVal, 'a');
+
+    const aElems = [...fieldContainer.querySelectorAll('[data-a-input]')];
+    aElems.forEach(elem => (elem.value = formatA));
+
+    if (formatName === 'st-2') {
+        formCheckbox.parentElement.classList.remove('hidden-elements');
+    } else {
+        formCheckbox.parentElement.classList.add('hidden-elements');
+    }
+}
+
+function onAddClick() {
+    const markup = `<fieldset class="column-container" data-js-added>
+                        <label class="form-lables" for="a">a <input class="form-inputs list-input" name="a" id="a" type="number" disabled  value="10.5" step=".5"  data-a-input /></label>
+                        <label class="form-lables" for="b">b <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" /></label>
+                        <label class="form-lables" for="quantity">Quantity <input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" /></label>
+                    </fieldset>`;
+    fieldContainer.insertAdjacentHTML('beforeend', markup);
+    onFormatSelect();
 }
