@@ -14,6 +14,17 @@ dd {
     margin: 0;
 }
 
+button {
+    border: none;
+    cursor: pointer;
+}
+
+input[type='checkbox'] {
+    cursor: pointer;
+    display: none;
+    visibility: hidden;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -59,18 +70,37 @@ input[type='number'] {
     row-gap: 16px;
 }
 .column-container {
-    min-width: 225px;
-
     display: flex;
     flex-direction: column;
+    justify-content: baseline;
+    align-items: baseline;
     gap: 16px;
 }
-.form-inputs {
-    width: 150px;
-}
 
+.form-inputs,
 .form-selection {
     width: 150px;
+    min-height: 20px;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: snow;
+    border: 2px solid rgb(66, 84, 165);
+}
+
+.form-inputs:disabled {
+    background-color: transparent;
+    color: black;
+}
+
+.form-inputs:focus,
+.form-selection:focus {
+    border: 3px solid cornflowerblue;
+    outline: none;
+}
+
+.form-options {
+    color: rgb(66, 84, 165);
 }
 
 .form-lables {
@@ -88,17 +118,124 @@ input[type='number'] {
 
 .add-btn {
     margin-top: 24px;
-    background-color: tan;
-    border: 1px solid saddlebrown;
-    color: black;
-    border-radius: 8px;
-    padding: 8px 16px;
-}
-.form-btn {
-    background-color: saddlebrown;
+    background-color: cornflowerblue;
+    border: 1px solid rgb(66, 84, 165);
     color: white;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 8px 16px;
+
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+
+    transition: background-color 0.25s ease-in, color 0.25s ease-in;
+}
+
+.form-btn {
+    background-color: rgb(66, 84, 165);
+    border: 1px solid transparent;
+    color: azure;
+    border-radius: 4px;
+    padding: 8px 16px;
+
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+
+    transition: border 0.25s ease-in, background-color 0.25s ease-in, color 0.25s ease-in;
+}
+
+.add-btn:focus,
+.add-btn:hover {
+    background-color: azure;
+    color: rgb(66, 84, 165);
+}
+
+.form-btn:focus,
+.form-btn:hover {
+    background-color: cornflowerblue;
+    border: 1px solid rgb(66, 84, 165);
+    color: rgb(27, 33, 63);
+}
+
+.checkbox-span {
+    position: relative;
+    margin-left: 8px;
+    padding: 4px 10px 4px 8px;
+    height: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    outline: none;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+    background-color: mistyrose;
+    border: 1px solid rosybrown;
+    color: black;
+
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+input[type='checkbox']:checked + .checkbox-span {
+    background-color: rgb(200, 230, 200);
+    border-color: seagreen;
+}
+
+.checkbox-span:focus,
+input[type='checkbox']:checked + .checkbox-span:focus {
+    border: 1px solid rgb(80, 80, 80);
+}
+
+.checkbox-toggle {
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: ghostwhite;
+
+    right: 8px;
+    left: auto;
+
+    transform: translateX(0px);
+
+    transition-property: transform, background-color, border;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+input[type='checkbox']:checked + .checkbox-span > .checkbox-toggle {
+    background-color: white;
+    border: 1px solid green;
+    transform: translateX(-25px);
+}
+
+.checkbox-value {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-yes {
+    color: transparent;
+}
+
+input[type='checkbox']:checked + .checkbox-span > .checkbox-no {
+    color: transparent;
+}
+
+input[type='checkbox']:checked + .checkbox-span > .checkbox-yes {
+    color: inherit;
 }
 
 .form-checkbox {

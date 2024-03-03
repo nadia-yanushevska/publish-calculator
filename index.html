@@ -33,7 +33,7 @@
                             <input class="form-inputs" name="pages" id="pages" type="number" min="1" />
                         </label>
                         <label class="form-lables" for="text-symbols"
-                            >Enter text-symbol count (tys.zn.):
+                            >Enter text-symbol count:
                             <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" step=".01" />
                         </label>
                     </fieldset>
@@ -45,7 +45,12 @@
                 </div>
                 <div class="controls">
                     <button class="add-btn" type="button" data-add-field>Add illustration</button>
-                    <label class="form-checkbox" for="a4-a5">A4 change to A5? <input type="checkbox" name="a4-change-a5" id="" data-checkbox /> </label>
+                    <label class="form-checkbox" for="a4-a5"
+                        >A4 change to A5? <input type="checkbox" name="a4-change-a5" id="a4-a5" data-checkbox />
+                        <span class="checkbox-span" tabindex="0" aria-label="Checkbox"
+                            ><span class="checkbox-toggle"></span><span class="checkbox-value checkbox-no">ні</span>&ensp;<span class="checkbox-value checkbox-yes">да</span></span
+                        ></label
+                    >
                     <button class="form-btn" type="submit">Calculate</button>
                 </div>
             </form>
@@ -56,19 +61,11 @@
             <div class="results-container">
                 <div class="data-container">
                     <h3 class="heading">Your data:</h3>
-                    <ul class="data-list" data-input>
-                        <li class="data-li">Pages, ipsum.</li>
-                        <li class="data-li">Autem, unde!</li>
-                        <li class="data-li">illustrations, hil!</li>
-                        <li class="data-li">Aspernatur, volupt!</li>
-                    </ul>
+                    <ul class="data-list" data-input></ul>
                 </div>
                 <div class="data-container">
                     <h3 class="heading">Results:</h3>
-                    <ul class="data-list result-list" data-output>
-                        <li class="data-li">Lorem, ipsum.</li>
-                        <li class="data-li">Hic, ipsum.</li>
-                    </ul>
+                    <ul class="data-list result-list" data-output></ul>
                 </div>
             </div>
         </section>
