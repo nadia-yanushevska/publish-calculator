@@ -11,16 +11,16 @@
     </head>
     <body>
         <section class="form-sec">
-            <h2 class="heading">Data Form</h2>
-            <p class="par">
+            <h2 class="heading">Обрахунок вих. даних.</h2>
+            <!-- <p class="par">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro dolorum provident aut iste vel minima nam temporibus deleniti rem hic? Lorem ipsum dolor sit, amet consectetur
                 adipisicing elit. Rem id ut est voluptatum molestias consequuntur doloremque cupiditate enim! Neque, ea.
-            </p>
+            </p> -->
             <form class="calculator-form" action="/action_page.php" data-calc-form>
                 <div class="flex-container" data-field-container>
                     <fieldset class="column-container">
                         <label class="form-lables" for="format"
-                            >Choose format:
+                            >Оберіть формат:
                             <select class="form-selection" id="format" name="format" data-format-input autofocus>
                                 <option class="form-options" value="st-1">60 × 84 / 16</option>
                                 <option class="form-options" value="st-2">60 × 84 / 8</option>
@@ -29,24 +29,30 @@
                             </select>
                         </label>
                         <label class="form-lables" for="pages"
-                            >Enter page count:
+                            >Обсяг (стор.):
                             <input class="form-inputs" name="pages" id="pages" type="number" min="1" />
                         </label>
                         <label class="form-lables" for="text-symbols"
-                            >Enter text-symbol count:
+                            >Обсяг тексту (тис. зн.):
                             <input class="form-inputs" name="text-symbols" id="text-symbols" type="number" min="0" step=".01" />
                         </label>
                     </fieldset>
                     <fieldset class="column-container" data-js-added>
-                        <label class="form-lables" for="a">a <input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input /></label>
-                        <label class="form-lables" for="b">b <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" data-b-input /></label>
-                        <label class="form-lables" for="quantity">Quantity <input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" data-quantity-input /></label>
+                        <label class="form-lables" for="a"
+                            >Ширина шпальти (см): <input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input
+                        /></label>
+                        <label class="form-lables" for="b"
+                            >Висота ілюстрації, заокруглено до 0,5 см (см): <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" data-b-input
+                        /></label>
+                        <label class="form-lables" for="quantity"
+                            >Кількість зображень: <input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" data-quantity-input
+                        /></label>
                     </fieldset>
                 </div>
                 <div class="controls">
                     <button class="add-btn" type="button" data-add-field>Add illustration</button>
                     <label class="form-checkbox" for="a4-a5"
-                        >A4 change to A5? <input type="checkbox" name="a4-change-a5" id="a4-a5" data-checkbox />
+                        >Додати Друк А4 на А5? <input type="checkbox" name="a4-change-a5" id="a4-a5" data-checkbox />
                         <span class="checkbox-span" tabindex="0" aria-label="Checkbox"
                             ><span class="checkbox-toggle"></span><span class="checkbox-value checkbox-no">ні</span>&ensp;<span class="checkbox-value checkbox-yes">да</span></span
                         ></label
@@ -57,14 +63,13 @@
         </section>
 
         <section class="results-sec hidden-elements" data-results>
-            <h2 class="heading">Results</h2>
+            <h2 class="heading">Результат:</h2>
             <div class="results-container">
                 <div class="data-container">
-                    <h3 class="heading">Your data:</h3>
+                    <h3 class="heading">Для наступних даних:</h3>
                     <ul class="data-list" data-input></ul>
                 </div>
                 <div class="data-container">
-                    <h3 class="heading">Results:</h3>
                     <ul class="data-list result-list" data-output></ul>
                 </div>
             </div>
