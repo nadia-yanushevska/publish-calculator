@@ -1,11 +1,24 @@
-import { calcForm, formatSelection, addBtn, fieldContainer, formCheckbox, resultsElem, resultInput, resultOutput } from './ref.js';
+import { calcForm, formatSelection, addBtn, fieldContainer, formCheckbox, resultsElem, resultInput, resultOutput, ENTER_KEY, BUTTON_NAME, FIELDSET_NAME, CHECKBOX_TYPE } from './ref.js';
 import { getData, getComputedData } from './data.js';
 import { getFormatData, getFormatValue, FORMAT_A_KEY } from './format.js';
 import { HIDDEN_CLASS, fieldSetMarkup, getDataMarkup } from './markup.js';
 
+document.addEventListener('keydown', onEnterPress);
 calcForm.addEventListener('submit', onFormSubmit);
 formatSelection.addEventListener('change', onFormatSelect);
 addBtn.addEventListener('click', onAddClick);
+
+function onEnterPress(e) {
+    if (e.key === ENTER_KEY && e.target.nodeName !== BUTTON_NAME) {
+        const nextElem = getNextElement(e.target, [...calcForm.elements]);
+
+        // if elem is checkbox do default
+        if (nextElem.type !== CHECKBOX_TYPE) {
+            e.preventDefault();
+            nextElem.focus();
+        }
+    }
+}
 
 function onFormSubmit(e) {
     e.preventDefault();
@@ -59,4 +72,16 @@ function clearForm() {
 
     calcForm.reset();
     onAddClick();
+}
+
+function getNextElement(currElem, elements) {
+    let index = elements.findIndex(elem => elem === currElem) + 1;
+
+    // if index exceeds array.length set it to 0
+    if (index >= elements.length) index = 0;
+
+    // if elem is fieldset update index
+    if (elements[index].nodeName === FIELDSET_NAME) elements[index].dataset.hasOwnProperty('jsAdded') ? (index += 2) : index++;
+
+    return elements[index];
 }
