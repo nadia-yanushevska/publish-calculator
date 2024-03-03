@@ -1,5 +1,7 @@
 export const HIDDEN_CLASS = 'hidden-elements';
 
+const OBJ_TYPE = 'object';
+
 export const fieldSetMarkup = `<fieldset class="column-container" data-js-added>
                         <label class="form-lables" for="a">a <input class="form-inputs list-input" name="a" id="a" type="number" disabled  value="10.5" step=".5"  data-a-input /></label>
                         <label class="form-lables" for="b">b <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" /></label>
@@ -12,5 +14,6 @@ export function getDataMarkup(obj) {
 }
 
 function dataTemplate(propArr) {
-    return `<li class="data-li">${propArr[0]}: <strong>${propArr[1]}</strong></li>`;
+    const valueStr = typeof propArr[1] === OBJ_TYPE ? propArr[1].join(', ') : propArr[1];
+    return `<li class="data-li">${propArr[0]}: <strong>${valueStr}</strong></li>`;
 }
