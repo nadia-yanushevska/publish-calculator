@@ -32,6 +32,7 @@ const translations = {
         suffix: '',
     },
 };
+// Class for translations and format
 class Property {
     propName;
     displayName;

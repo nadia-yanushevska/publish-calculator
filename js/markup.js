@@ -39,17 +39,26 @@ const translations = {
         displayName: 'Друк А4 на А5',
         suffix: '',
     },
+    tempA: {
+        displayName: 'Ширина шпальти (см):',
+    },
+    tempB: {
+        displayName: 'Висота ілюстрації (см):',
+    },
+    tempQ: {
+        displayName: 'Кількість зображень:',
+    },
 };
 
 export const fieldSetMarkup = `<fieldset class="column-container" data-js-added>
                         <label class="form-lables" for="a"
-                            >Ширина шпальти (см): <input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input
+                            >${translations.tempA.displayName}<input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input
                         /></label>
                         <label class="form-lables" for="b"
-                            >Висота ілюстрації (см): <input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" data-b-input
+                            >${translations.tempB.displayName}<input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" data-b-input
                         /></label>
                         <label class="form-lables" for="quantity"
-                            >Кількість зображень: <input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" data-quantity-input
+                            >${translations.tempQ.displayName}<input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" data-quantity-input
                         /></label>
                     </fieldset>`;
 
