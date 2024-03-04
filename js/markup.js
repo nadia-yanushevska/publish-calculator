@@ -50,17 +50,19 @@ const translations = {
     },
 };
 
-export const fieldSetMarkup = `<fieldset class="column-container" data-js-added>
+export function getFieldSetMarkup(i) {
+    return `<fieldset class="column-container" data-js-added>
                         <label class="form-lables" for="a"
                             >${translations.tempA.displayName}<input class="form-inputs list-input" name="a" id="a" type="number" disabled value="10.5" step=".5" data-a-input
                         /></label>
-                        <label class="form-lables" for="b"
-                            >${translations.tempB.displayName}<input class="form-inputs list-input" name="b" id="b" type="number" min="0" step=".5" data-b-input
+                        <label class="form-lables" for="b${i}" data-js-focus='${i}'
+                            >${translations.tempB.displayName}<input class="form-inputs list-input" name="b${i}" id="b${i}" type="number" min="0" step=".5" autofocus data-b-input 
                         /></label>
                         <label class="form-lables" for="quantity"
                             >${translations.tempQ.displayName}<input class="form-inputs list-input" name="quantity" id="quantity" type="number" min="0" data-quantity-input
                         /></label>
                     </fieldset>`;
+}
 
 export function getDataMarkup(obj) {
     const entries = Object.entries(obj);
