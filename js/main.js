@@ -14,6 +14,10 @@ addBtn.addEventListener('click', onAddClick);
 let B_ITERATOR = 1;
 
 function onEnterPress(e) {
+    if (e.target.nodeName === 'SPAN' && e.code === 'Space') {
+        e.preventDefault();
+        formCheckbox.checked = !formCheckbox.checked;
+    }
     if (e.key === ENTER_KEY && e.target.nodeName !== BUTTON_NAME) {
         const nextElem = getNextElement(e.target, [...calcForm.elements]);
 
@@ -73,7 +77,7 @@ export function onAddClick() {
     fieldContainer.insertAdjacentHTML('beforeend', getFieldSetMarkup(B_ITERATOR));
 
     const focusInput = fieldContainer.querySelector(`[data-js-focus='${B_ITERATOR}']`);
-    focusInput.focus();
+    if (B_ITERATOR !== 0) focusInput.focus();
 
     B_ITERATOR++;
 

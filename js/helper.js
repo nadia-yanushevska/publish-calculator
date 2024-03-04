@@ -19,6 +19,8 @@ export function clearForm() {
 }
 
 export function getNextElement(currElem, elements) {
+    if (currElem.nodeName === 'SPAN') return elements.find(elem => elem.dataset.hasOwnProperty('jsSubmit'));
+
     let index = elements.findIndex(elem => elem === currElem) + 1;
 
     // if index exceeds array.length set it to 0
