@@ -18,6 +18,10 @@ export function clearForm() {
     onAddClick();
 }
 
+export function getInitElement() {
+    return calcForm.elements[0]?.children[1]?.children[0];
+}
+
 export function getNextElement(currElem, elements) {
     if (currElem.nodeName === 'SPAN') return elements.find(elem => elem.dataset.hasOwnProperty('jsSubmit'));
 

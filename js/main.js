@@ -2,7 +2,7 @@ import { calcForm, formatSelection, addBtn, resetBtn, fieldContainer, formCheckb
 import { getData, getComputedData } from './data.js';
 import { getFormatData, getFormatValue, FORMAT_A_KEY } from './format.js';
 import { HIDDEN_CLASS, getFieldSetMarkup, getDataMarkup } from './markup.js';
-import { clearFieldSet, clearForm, getNextElement, setAValue } from './helper.js';
+import { clearFieldSet, clearForm, getInitElement, getNextElement, setAValue } from './helper.js';
 
 document.addEventListener('keydown', onEnterPress);
 calcForm.addEventListener('submit', onFormSubmit);
@@ -13,6 +13,7 @@ addBtn.addEventListener('click', onAddClick);
 resetBtn.addEventListener('click', onReset);
 
 let B_ITERATOR = 1;
+getInitElement().focus();
 
 function onEnterPress(e) {
     if (e.target.nodeName === 'SPAN' && e.code === 'Space') {
@@ -22,7 +23,6 @@ function onEnterPress(e) {
     if (e.key === ENTER_KEY && e.target.nodeName !== BUTTON_NAME) {
         const nextElem = getNextElement(e.target, [...calcForm.elements]);
 
-        // if elem is checkbox do default
         e.preventDefault();
         nextElem.focus();
     }
@@ -31,11 +31,10 @@ function onEnterPress(e) {
 function onReset(e) {
     e.preventDefault();
 
-    // B_ITERATOR = 0;
-
     clearFieldSet();
     clearForm();
-
+    getInitElement().focus();
+    
     resultsElem.classList.add(HIDDEN_CLASS);
 }
 
