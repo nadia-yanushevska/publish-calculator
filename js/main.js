@@ -1,4 +1,4 @@
-import { calcForm, formatSelection, addBtn, fieldContainer, formCheckbox, resultsElem, resultInput, resultOutput, ENTER_KEY, BUTTON_NAME } from './ref.js';
+import { calcForm, formatSelection, addBtn, resetBtn, fieldContainer, formCheckbox, resultsElem, resultInput, resultOutput, ENTER_KEY, BUTTON_NAME } from './ref.js';
 import { getData, getComputedData } from './data.js';
 import { getFormatData, getFormatValue, FORMAT_A_KEY } from './format.js';
 import { HIDDEN_CLASS, getFieldSetMarkup, getDataMarkup } from './markup.js';
@@ -10,6 +10,7 @@ calcForm.addEventListener('submit', onFormSubmit);
 formatSelection.addEventListener('change', onFormatSelect);
 formCheckbox.addEventListener('change', onCheckbox);
 addBtn.addEventListener('click', onAddClick);
+resetBtn.addEventListener('click', onReset);
 
 let B_ITERATOR = 1;
 
@@ -27,6 +28,17 @@ function onEnterPress(e) {
     }
 }
 
+function onReset(e) {
+    e.preventDefault();
+
+    // B_ITERATOR = 0;
+
+    clearFieldSet();
+    clearForm();
+
+    resultsElem.classList.add(HIDDEN_CLASS);
+}
+
 function onFormSubmit(e) {
     e.preventDefault();
 
@@ -37,12 +49,6 @@ function onFormSubmit(e) {
     resultOutput.innerHTML = getDataMarkup(resultData);
     resultsElem.classList.remove(HIDDEN_CLASS);
 
-    formData = {};
-    resultData = {};
-    B_ITERATOR = 0;
-
-    clearFieldSet();
-    clearForm();
 }
 
 function onFormatSelect() {

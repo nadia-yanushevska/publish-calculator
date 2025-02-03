@@ -6,16 +6,13 @@
         <meta name="keywords" content="" />
         <meta name="description" content="KPI Publishing Calculator" />
         <meta name="author" content="Nadiia Yanushevska" />
-        <title>Document</title>
+        <title>Обрахунок вих. даних.</title>
+        <link rel="icon" type="image/jpg" href="./icon.jpg" />
         <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body>
         <section class="form-sec">
             <h2 class="heading">Обрахунок вих. даних.</h2>
-            <!-- <p class="par">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro dolorum provident aut iste vel minima nam temporibus deleniti rem hic? Lorem ipsum dolor sit, amet consectetur
-                adipisicing elit. Rem id ut est voluptatum molestias consequuntur doloremque cupiditate enim! Neque, ea.
-            </p> -->
             <form class="calculator-form" action="/action_page.php" data-calc-form>
                 <div class="flex-container" data-field-container>
                     <fieldset class="column-container">
@@ -52,10 +49,13 @@
                     <label class="form-checkbox" for="a4-a5"
                         >Додати Друк А4 на А5? <input type="checkbox" name="a4-change-a5" id="a4-a5" data-checkbox />
                         <span class="checkbox-span" tabindex="0" aria-label="Checkbox"
-                            ><span class="checkbox-toggle"></span><span class="checkbox-value checkbox-no">ні</span>&ensp;<span class="checkbox-value checkbox-yes">да</span></span
+                            ><span class="checkbox-toggle"></span><span class="checkbox-value checkbox-no">ні</span>&ensp;<span class="checkbox-value checkbox-yes">так</span></span
                         ></label
                     >
-                    <button class="form-btn" type="submit" data-js-submit>Обрахувати</button>
+                    <div class="btn-container">
+                        <button class="reset-btn" type="reset" data-js-reset>Очистити</button>
+                        <button class="form-btn" type="submit" data-js-submit>Обрахувати</button>
+                    </div>
                 </div>
             </form>
         </section>

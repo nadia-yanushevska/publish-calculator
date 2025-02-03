@@ -18,7 +18,6 @@ export function getData(elems, fieldArray) {
     const a = A4toA5 ? 16 : getFormatData(format, FORMAT_A_KEY);
     const b = [];
     const quantity = [];
-    console.log(fieldArray);
 
     fieldArray.forEach(elem => {
         b.push(+elem.elements[1].value || 0);
